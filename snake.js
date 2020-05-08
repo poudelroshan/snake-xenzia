@@ -1,33 +1,41 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var button = document.querySelector("button");
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+$(document).ready(function() {
+
+	var canvas = $("canvas")[0];
+	var ctx = canvas.getContext("2d");
+	var playButton = $("#play-button")[0];
+	var height = canvas.height;
+	var width = canvas.width;
+	var cw = 15; // Cell width
+	var snake = []; // Array for Snake
+	var keyPressed = "RIGHT" // Default direction of snake
+	setInterval(drawSnake, 100); // Draw snake every 100 ms
 
 
-// Handles canvas color changing
-var isBlack = true;
-function changeColor() {
-	if (isBlack){
-		ctx.fillStyle = "purple";
+
+	function drawSnake() {
+		snake = {
+			x : Math.round(Math.random() * (width - cw)/cw),
+			y : Math.round(Math.random() * (height - cw) / cw)
+		}
 	}
-	else {
-		ctx.fillStyle = "black";
+	
+
+	function start(){
+		if (keyPressed == "RIGHT")
+			snake.x = snake.x + 1;
+		else if (keyPressed == "LEFT")
+			snake.x = snake.x - 1;
+		else if (keyPressed == "UP")
+			snake.y = snake.y - 1;
+		else if (keyPressed == "DOWN")
+			snake.y = snake.y + 1;
+		else
+			console.log("User pressed invalid key");
 	}
-	isBlack = !isBlack;
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
 
-// When user clicks play, change 'play' button text to 'restart'
-function changeText(){
-	if (button.textContent == "Play"){
-		button.textContent = "Restart"
+	function createFood(){
+		// Create food
 	}
-}
 
-// Handles button click
-function buttonFunc(){
-	changeColor();
-	changeText();
-}
 
-button.addEventListener("click", buttonFunc);
+})
