@@ -1,9 +1,9 @@
-canvas{
-	background-color: black;
-	border: 8px solid red;
-}
-
 h1{
 	font-family: fantasy;
 	color: blue;
+}
+
+canvas{
+	background-color: black;
+	border: 8px solid red;
 }
